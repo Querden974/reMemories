@@ -7,18 +7,18 @@
 
 
 
-                <form action="/login" method="post"
+                <form action="" method="post"
                     class="bg-component mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8">
                     @csrf
                     <h1 class="text-center text-2xl font-bold text-primary sm:text-3xl">Sign in to your account</h1>
 
-
                     <div>
-                        <label for="email" class="sr-only">Email</label>
+                        <label for="name" class="sr-only">Pseudo</label>
 
                         <div class="relative">
-                            <input type="email" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
-                                placeholder="Enter email" />
+                            <input type="text" name="name"
+                                class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                                placeholder="Enter pseudo" value="{{ old('name') }}" required />
 
                             <span class="absolute inset-y-0 end-0 grid place-content-center px-4">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="size-4 text-gray-400" fill="none"
@@ -34,8 +34,9 @@
                         <label for="password" class="sr-only">Password</label>
 
                         <div class="relative">
-                            <input type="password" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
-                                placeholder="Enter password" />
+                            <input type="password" name="password"
+                                class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                                placeholder="Enter password" required />
 
                             <span class="absolute inset-y-0 end-0 grid place-content-center px-4">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="size-4 text-gray-400" fill="none"

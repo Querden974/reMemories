@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProfileController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,17 +18,18 @@ use App\Http\Controllers\RegisterController;
 
 Route::get('/', function () {
     return view('index');
-});
-Route::get('/login', function () {
-    return view('login');
-});
+})->name('home');
 
-Route::get('/register', [RegisterController::class, 'RegisterShow']);
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/login', [AuthController::class, 'doLogin']);
+Route::get('/logout', [AuthController::class, 'doLogout']);
+
+Route::get('/register', [RegisterController::class, 'RegisterShow'])->name('register');
 Route::post('/register', [RegisterController::class, 'RegisterValitation']);
+
+Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
+
 Route::get('/db', function () {
-
-
-
     return view('dbtest');
 });
 
