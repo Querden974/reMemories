@@ -13,7 +13,9 @@ return new class extends Migration
 {
     Schema::table('users', function (Blueprint $table) {
         $table->timestamps(); // Ajoute `created_at` et `updated_at`
+        $table->unique('name');
     });
+
 }
 
 public function down()

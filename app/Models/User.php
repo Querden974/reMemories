@@ -12,6 +12,10 @@ class User extends Authenticatable
 {
     use  HasFactory;
 
+    public function userInfo(): HasOne
+    {
+        return $this->hasOne(UserInfo::class);
+    }
 
     protected $fillable = [
         'name',

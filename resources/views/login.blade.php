@@ -20,12 +20,10 @@
                                 class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                                 placeholder="Enter pseudo" value="{{ old('name') }}" required />
 
-                            <span class="absolute inset-y-0 end-0 grid place-content-center px-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-4 text-gray-400" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
-                                </svg>
+                            <span class="select-none absolute inset-y-0 end-0 grid place-content-center px-4">
+                                <span class="material-symbols-outlined text-gray-400 p-1">
+                                    person
+                                </span>
                             </span>
                         </div>
                     </div>
@@ -34,18 +32,16 @@
                         <label for="password" class="sr-only">Password</label>
 
                         <div class="relative">
-                            <input type="password" name="password"
+                            <input type="password" name="password" id="password"
                                 class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                                 placeholder="Enter password" required />
 
-                            <span class="absolute inset-y-0 end-0 grid place-content-center px-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-4 text-gray-400" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                </svg>
+                            <span id="password-visibility"
+                                class="select-none cursor-pointer absolute inset-y-0 end-0 grid place-content-center px-4">
+                                <span
+                                    class="material-symbols-outlined text-gray-400 border-2 border-primary rounded-full p-1">
+                                    visibility_off
+                                </span>
                             </span>
                         </div>
                     </div>
@@ -63,4 +59,26 @@
             </div>
         </div>
     </div>
+
+    <script>
+        const password_visibility = document.getElementById('password-visibility');
+        const password = document.getElementById('password');
+        password_visibility.addEventListener('click', function() {
+            if (password.type === 'password') {
+                password.type = 'text';
+                password_visibility.innerHTML = `
+                <span class="material-symbols-outlined text-bachground border-2 border-primary bg-primary rounded-full p-1">
+                    visibility
+                </span>
+                `;
+            } else {
+                password.type = 'password';
+                password_visibility.innerHTML = `
+                <span class="material-symbols-outlined text-gray-400 border-2 border-primary rounded-full p-1">
+                    visibility_off
+                </span>
+                `;
+            }
+        });
+    </script>
 @endsection
