@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\UserInfoPublic;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
@@ -16,8 +17,21 @@ class ProfileController extends Controller
         $info = UserInfoPublic::where('user_id', Auth::user()->id)->first();
         $user = Auth::user();
         $user->info = $info;
-        //dd($info);
-        return view('profile', compact('user'));
+        dd($info);
+        //return view('profile', compact('user'));
+    }
+
+    public function profileShow(string $name){
+        $profile = User::with('userInfo')->where('name', $name)->firstOrFail();
+        if(Auth::check()){
+            $info = UserInfoPublic::where('user_id', Auth::user()->id)->first();
+            $user = Auth::user();
+            $user->info = $info;
+            return view('profile', compact('profile', 'user'));
+        }
+        //dd(Auth::user());
+        //dd($profile->id);
+        return view('profile', compact('profile'));
     }
 
     public function editProfile(Request $request){

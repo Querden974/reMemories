@@ -29,7 +29,8 @@ class AuthController extends Controller
     }
 
     public function doLogout(){
+        session()->put('url.intended', url()->previous());
         Auth::logout();
-        return redirect()->intended(route('login'))->with('success', 'You are now disconnected from your account!');
+        return redirect()->intended()->with('success', 'You are now disconnected from your account!');
     }
 }

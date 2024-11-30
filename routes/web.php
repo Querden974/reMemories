@@ -29,6 +29,7 @@ Route::post('/register', [RegisterController::class, 'RegisterValitation']);
 
 Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
 Route::post('/profile', [ProfileController::class, 'editProfile']);
+Route::get('/profile/{user}', [ProfileController::class, 'profileShow'])->name('profileShow');
 
 Route::get('/db', function () {
     return view('dbtest');

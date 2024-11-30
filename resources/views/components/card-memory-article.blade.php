@@ -12,9 +12,7 @@
 
             <div class="flex items-center gap-16">
                 <p class="text-primary"> Today</p>
-                <span class="material-symbols-outlined">
-                    more_horiz
-                </span>
+                <x-context-menu-article />
             </div>
 
         </div>

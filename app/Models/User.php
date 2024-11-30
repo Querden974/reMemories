@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\UserInfoPublic;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+
 
 class User extends Authenticatable
 {
@@ -14,7 +17,7 @@ class User extends Authenticatable
 
     public function userInfo(): HasOne
     {
-        return $this->hasOne(UserInfo::class);
+        return $this->hasOne(UserInfoPublic::class, 'user_id');
     }
 
     protected $fillable = [

@@ -21,14 +21,16 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 
 <body class="bg-background min-h-screen">
     <header class="flex justify-between items-baseline py-4 px-40 text-white">
-        <h1 class="font-madimi text-primary text-3xl">re:Memories</h1>
-        <nav class="text-slate-200 flex flex-row items-center gap-6">
+        <a href="/">
+            <h1 class="font-madimi text-primary text-3xl">re:Memories</h1>
+        </a>
+        {{-- <nav class="text-slate-200 flex flex-row items-center gap-6">
 
             <a href="/">Home</a>
             <a href="/memories">Memories</a>
             <a href="/friends">Friends</a>
 
-        </nav>
+        </nav> --}}
 
         @auth
             <div>

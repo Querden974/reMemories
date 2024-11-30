@@ -11,7 +11,10 @@ module.exports = {
             'madimi': ['Madimi One', 'sans-serif'],
         },
         colors: {
-            'primary': '#3CF1A9',
+            'primary': {
+                'DEFAULT': '#3CF1A9',
+                'hover': '#32C88C'
+            },
             'background': "#1C1C1D",
             'component': "#808080"
     },
