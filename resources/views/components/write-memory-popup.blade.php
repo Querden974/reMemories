@@ -1,4 +1,4 @@
-<form action="/profile" method="post" id='editProfileForm' enctype="multipart/form-data">
+<form action="/upload" method="post" id='writeMemoryForm' enctype="multipart/form-data">
     @csrf
     <div class='flex flex-col'>
         <div class="flex flex-col items-baseline mr-2 w-full">
@@ -11,7 +11,7 @@
     <div class='flex flex-col'>
         <div class="flex flex-col items-baseline mt-4 w-full">
             {{-- <label for="birthdate" class="block font-medium text-background">Birthdate</label> --}}
-            <textarea rows="8" name="content" type="text"
+            <textarea rows="8" name="content" type="text" id="content" placeholder="Enter your memory"
                 class=" rounded-lg border border-gray-200 p-4  text-sm shadow-sm w-full"></textarea>\
         </div>
     </div>
@@ -26,8 +26,12 @@
             <p>Valid formats: JPG, PNG, MP4</p>
             <div id="error_upload" class="text-red-500 text-sm font-bold">
             </div>
+
+
         </div>
     </div>
+    <div class="flex flex-row mt-4 gap-2" id="image-preview">
 
+    </div>
 
 </form>

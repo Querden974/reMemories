@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 
 class UserInfoPublic extends Model
 {
@@ -23,5 +24,10 @@ class UserInfoPublic extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function imageUrl(): string{
+
+        return Storage::disk('public')->url($this->profile_img);
     }
 }

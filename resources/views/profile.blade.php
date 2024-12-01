@@ -5,7 +5,7 @@
     <div class="w-full flex items-center justify-center">
         <div class="w-1/2 flex flex-row items-center justify-center   ">
             <img id="profile-img" class="select-none w-64 aspect-square rounded-full z-10 bg-component p-2"
-                src="https://gautier-rayeroux.fr/images/Profile_img.jpg" draggable="false" />
+                src="{{ $profile->userInfo->imageUrl() }}" draggable="false" />
             <div class="relative -translate-x-10 flex flex-col gap-5 bg-component  rounded-r-xl   ">
                 <div class="flex flex-col gap-2 py-3 px-16">
 

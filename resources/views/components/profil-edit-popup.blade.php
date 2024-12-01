@@ -1,4 +1,4 @@
-<form action="/profile" method="post" id='editProfileForm'>
+<form action="/profile/{{ auth()->user()->name }}" method="post" id='editProfileForm' enctype="multipart/form-data">
     @csrf
     <div class="flex flex-col items-baseline mr-2 w-fit">
         <label for="firstname" class="block font-medium text-background w-max">Pseudo</label>
@@ -27,8 +27,8 @@
                 class="h-[60px] rounded-lg border border-gray-200 p-4  text-sm shadow-sm w-64">
         </div>
         <div class="flex flex-col items-baseline mt-4 w-full">
-            <label for="profileImg" class="block font-medium text-background">Profile picture</label>
-            <input id="profileImg" name="profileImg" type="file" accept='.jpg, .jpeg, .png' title=" "
+            <label for="profile_img" class="block font-medium text-background">Profile picture</label>
+            <input id="profile_img" name="profile_img" type="file" accept='.jpg, .jpeg, .png' title=" "
                 class="rounded-lg border border-gray-200 bg-white p-4 text-sm shadow-sm w-64 text-component">
         </div>
     </div>

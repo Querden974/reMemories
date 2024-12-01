@@ -5,6 +5,7 @@ use App\Models\User;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,9 +17,8 @@ use App\Http\Controllers\ProfileController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-})->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::post('/upload', [HomeController::class, 'post']);
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'doLogin']);
@@ -30,6 +30,7 @@ Route::post('/register', [RegisterController::class, 'RegisterValitation']);
 Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
 Route::post('/profile', [ProfileController::class, 'editProfile']);
 Route::get('/profile/{user}', [ProfileController::class, 'profileShow'])->name('profileShow');
+Route::post('/profile/{user}', [ProfileController::class, 'editProfile']);
 
 Route::get('/db', function () {
     return view('dbtest');

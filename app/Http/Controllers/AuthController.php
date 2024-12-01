@@ -33,4 +33,6 @@ class AuthController extends Controller
         Auth::logout();
         return redirect()->intended()->with('success', 'You are now disconnected from your account!');
     }
+
+
 }

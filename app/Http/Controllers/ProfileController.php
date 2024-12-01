@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\UserInfoPublic;
 use App\Models\User;
+use Illuminate\Http\UploadedFile;
+use App\Http\Requests\EditProfileRequest;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -29,39 +32,48 @@ class ProfileController extends Controller
             $user->info = $info;
             return view('profile', compact('profile', 'user'));
         }
-        //dd(Auth::user());
-        //dd($profile->id);
+
         return view('profile', compact('profile'));
     }
 
-    public function editProfile(Request $request){
+    public function editProfile(UserInfoPublic $info, EditProfileRequest $request){
+        $data = $request->validated();
+        dd($data);
+
+
         if(!Auth::check()){
             return redirect()->intended(route('login'));
         }
 
+
+        $user = $info->where('user_id', Auth::user()->id)->first();
         $existing = UserInfoPublic::where('user_id', Auth::user()->id)->first();
-        if($existing){
-            $existing->update([
-                'firstname' => $request->firstname,
-                'lastname' => $request->lastname,
-                'birthdate' => $request->birthdate,
-                'profile_img' => $request->profileImg,
-            ]);
-            return redirect('login')->with('success', 'Account updated successfully');
+        if($existing && $user){
+
+            $user->update($this->updateData($user, $request));
+            return redirect('profile/'.Auth::user()->name)->with('success', 'Account updated successfully');
         } else {
-           $info = UserInfoPublic::create([
-            'user_id' => Auth::user()->id,
-            'firstname' => $request->firstname,
-            'lastname' => $request->lastname,
-            'birthdate' => $request->birthdate,
-            'profile_img' => $request->profileImg,
 
-        ]);
+           $info = UserInfoPublic::create($this->updateData(new UserInfoPublic, $request));
 
-        return redirect('login')->with('success', 'Account added successfully');
+        return redirect('profile/'.Auth::user()->name)->with('success', 'Account added successfully');
         }
+    }
 
+    private function updateData(UserInfoPublic $user, EditProfileRequest $request): array{
+        $data = $request->validated();
+        $data['user_id'] = Auth::user()->id;
 
+        /** @var UploadedFile|null $image */
+        $image= $request->validated('profile_img');
 
+        if($image === null || $image->getError()){
+            return $data;
+        }
+        if($user->profile_img){
+            Storage::disk('public')->delete($user->profile_img);
+        }
+        $data['profile_img'] = $image->store('profile_img','public');
+        return $data;
     }
 }
