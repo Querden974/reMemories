@@ -8,14 +8,20 @@
 
                 <p
                     class="font-bold flex items-center gap-2 px-4 py-2 text-sm/none text-primary hover:bg-primary hover:text-background">
-                    <img class="w-7 aspect-square rounded-full" src="{{ auth()->user()->userInfo->imageUrl() }}"
-                        alt="">{{ auth()->user()->name }}
+                    {{ auth()->user()->name }}
+                    @if (isset(auth()->user()->userInfo->profile_img))
+                        <img class="w-9 aspect-square rounded-full  border-primary " draggable="false"
+                            src="{{ auth()->user()->userInfo->imageUrl() }}" />
+                    @else
+                        <img class="w-9 aspect-square rounded-full  border-primary " draggable="false"
+                            src="{{ Storage::disk('public')->url('profile_img/default_avatar.webp') }}" />
+                    @endif
                 </p>
             </button>
             <div class="overflow-hidden">
 
                 <div id='menu'
-                    class="hidden absolute end-1  mt-2 rounded-xl border border-primary  bg-component shadow-lg"
+                    class="hidden absolute end-1  mt-2 rounded-xl border border-primary  bg-component shadow-lg  z-50"
                     role="menu">
                     <div class="p-2">
                         <a href="/profile/{{ auth()->user()->name }}"

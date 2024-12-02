@@ -5,8 +5,14 @@
 
 
             @auth
-                <img class="w-9 aspect-square rounded-full  border-primary " draggable="false"
-                    src="{{ auth()->user()->userInfo->imageUrl() }}" />
+                @if (isset(auth()->user()->userInfo->profile_img))
+                    <img class="w-9 aspect-square rounded-full  border-primary " draggable="false"
+                        src="{{ auth()->user()->userInfo->imageUrl() }}" />
+                @else
+                    <img class="w-9 aspect-square rounded-full  border-primary " draggable="false"
+                        src="{{ Storage::disk('public')->url('profile_img/default_avatar.webp') }}" />
+                @endif
+
             @endauth
             @guest
                 <img class="w-9 aspect-square rounded-full  border-primary " draggable="false"
@@ -156,11 +162,33 @@
                 });
         }
 
+        showImages() {
+            const images = Array.from(event.target.files);
+            const preview = document.getElementById('image-preview');
+            preview.innerHTML = '';
 
+
+            images.forEach(image => {
+
+                const imagePreview = document.createElement('img');
+                imagePreview.src = URL.createObjectURL(image);
+                imagePreview.className = 'w-24 h-24 rounded-md';
+                preview.appendChild(imagePreview);
+            });
+
+            console.log(event.target.files);
+            // images.addEventListener('change', (event) => {
+
+            // });
+        }
     }
 
+
+
     const dropzone = new Dropzone([]);
-    console.log(dropzone.allValidFiles);
+
+
+
 
     const write_memory = document.getElementById('write_memory');
     write_memory.addEventListener('click', function() {
@@ -183,16 +211,14 @@
             showCancelButton: true,
             showConfirmButton: true,
 
+
         }).then((result) => {
 
             //dropzone.addImageInput();
-            dropzone.upload();
-
-            //document.getElementById('writeMemoryForm').submit();
+            //dropzone.upload();
+            if (result.isConfirmed) {
+                document.getElementById('writeMemoryForm').submit();
+            }
         });
-    });
-    const cancelEdit = document.getElementById('cancelEdit');
-    cancelEdit.addEventListener('click', function() {
-        Swal.close();
     });
 </script>

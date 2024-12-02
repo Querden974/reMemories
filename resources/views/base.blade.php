@@ -4,12 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Madimi+One&display=swap" rel="stylesheet">
+
+    {{-- SCRIPTS --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.6/dist/cdn.min.js"></script>
+
+    {{-- LINKS --}}
+    <link href="https://fonts.googleapis.com/css2?family=Madimi+One&display=swap" rel="stylesheet">
     <link href="
 https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 " rel="stylesheet">
-
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
@@ -20,17 +24,12 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 </head>
 
 <body class="bg-background min-h-screen">
-    <header class="flex justify-between items-baseline py-4 px-40 text-white">
+    <header class="flex flex-row justify-between items-baseline py-4 px-40 text-white">
         <a href="/">
             <h1 class="font-madimi text-primary text-3xl">re:Memories</h1>
         </a>
-        {{-- <nav class="text-slate-200 flex flex-row items-center gap-6">
 
-            <a href="/">Home</a>
-            <a href="/memories">Memories</a>
-            <a href="/friends">Friends</a>
-
-        </nav> --}}
+        <x-search-bar :users="$users" :info="$info" />
 
         @auth
             <div>

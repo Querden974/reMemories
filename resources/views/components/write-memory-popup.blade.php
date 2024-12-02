@@ -1,5 +1,23 @@
 <form action="/upload" method="post" id='writeMemoryForm' enctype="multipart/form-data">
     @csrf
+    <fieldset class="flex flex-row justify-center items-baseline mt-4 w-full gap-3 ">
+        <legend class="text-background underline">Select restrictions:</legend>
+
+        <div>
+            <input type="radio" id="public" name="restrictions" value="public" checked />
+            <label for="public">Public</label>
+        </div>
+
+        <div>
+            <input type="radio" id="restricted" name="restrictions" value="restricted" />
+            <label for="restricted">Friend only</label>
+        </div>
+
+        <div>
+            <input type="radio" id="louie" name="restrictions" value="private" />
+            <label for="louie">Private</label>
+        </div>
+    </fieldset>
     <div class='flex flex-col'>
         <div class="flex flex-col items-baseline mr-2 w-full">
             <label for="title" class="block font-medium text-background w-max">Title</label>
@@ -15,8 +33,16 @@
                 class=" rounded-lg border border-gray-200 p-4  text-sm shadow-sm w-full"></textarea>\
         </div>
     </div>
-
     <div class='flex flex-col'>
+        <div class="flex flex-col items-baseline mt-4 w-full">
+            <label for="images[]" class="block font-medium text-background w-max">Import Images</label>
+            <input type="file" name="images[]" id="images" multiple onchange="dropzone.showImages()"
+                accept="image/jpg, image/jpeg, image/png, image/gif">
+        </div>
+    </div>
+
+
+    {{-- <div class='flex flex-col'>
         <div id="image-upload" dropzone="copy"
             class="flex flex-col items-center justify-center mt-4 h-32 w-full rounded-lg border-2 border-dashed border-gray-300 cursor-pointer"
             onclick='dropzone.clickHandler(event)' ondrop="dropzone.dropHandler(event)"
@@ -28,7 +54,7 @@
             </div>
 
 
-        </div>
+        </div> --}}
     </div>
     <div class="flex flex-row mt-4 gap-2" id="image-preview">
 

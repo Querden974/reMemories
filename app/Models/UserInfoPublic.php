@@ -27,7 +27,11 @@ class UserInfoPublic extends Model
     }
 
     public function imageUrl(): string{
+        if(isset($this->profile_img)){
+            return Storage::disk('public')->url($this->profile_img);
+        }else{
+            return Storage::disk('public')->url('profile_img/default_avatar.webp');
+        }
 
-        return Storage::disk('public')->url($this->profile_img);
     }
 }

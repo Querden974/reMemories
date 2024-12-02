@@ -20,6 +20,8 @@ use App\Http\Controllers\HomeController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::post('/upload', [HomeController::class, 'post']);
 
+Route::post('/search', [HomeController::class, 'search']);
+
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'doLogin']);
 Route::get('/logout', [AuthController::class, 'doLogout']);

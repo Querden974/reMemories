@@ -8,12 +8,11 @@ use Illuminate\View\Component;
 
 class ContextMenuArticle extends Component
 {
-    /**
-     * Create a new component instance.
-     */
-    public function __construct()
+    public $memory;
+
+    public function __construct($memory)
     {
-        //
+        $this->memory = $memory;
     }
 
     /**

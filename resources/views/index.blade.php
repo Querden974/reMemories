@@ -16,7 +16,23 @@
             </div>
         @endguest
 
-        <x-card-memory />
-        <x-card-memory-article />
+        @foreach ($memories->sortByDesc('created_at') as $memory)
+            {{-- @dd($memory->getAttributes()) --}}
+
+            @if ($memory->restrictions == 'private')
+                @auth
+                    @if (Auth::user()->id == $memory->user_id)
+                        <x-card-memory :memory="$memory" :users="$users" :info="$info" />
+                    @endif
+                @endauth
+            @elseif ($memory->restrictions == 'restricted')
+                @if (Auth::user()->id == $memory->user_id)
+                    <x-card-memory :memory="$memory" :users="$users" :info="$info" />
+                @endif
+            @else
+                <x-card-memory :memory="$memory" :users="$users" :info="$info" />
+            @endif
+        @endforeach
+
     </main>
 @endsection

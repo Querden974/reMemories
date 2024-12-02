@@ -6,21 +6,18 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class CardMemory extends Component
+class SearchBar extends Component
 {
-    public $memory;
     public $users;
     public $info;
 
     /**
      * Create a new component instance.
      */
-    public function __construct($memory, $users, $info)
+    public function __construct($users, $info)
     {
-        $this->memory = $memory;
         $this->users = $users;
         $this->info = $info;
-
     }
 
     /**
@@ -28,6 +25,6 @@ class CardMemory extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.card-memory');
+        return view('components.search-bar');
     }
 }
