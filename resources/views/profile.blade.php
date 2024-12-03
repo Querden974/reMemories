@@ -305,6 +305,6 @@
                 });
             });
         </script>
-
+        <x-script-comment-btn />
     @endauth
 @endsection

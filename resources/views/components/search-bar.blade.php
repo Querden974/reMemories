@@ -15,7 +15,7 @@
         </div>
     </form>
 
-    <div id="autocomplete" class="w-1/4 absolute mt-2 z-50 bg-background rounded-xl p-2 shadow-lg border border-primary"
+    <div id="autocomplete" class="w-1/5 absolute mt-2 z-50 bg-background rounded-xl p-2 shadow-lg border border-primary"
         x-show="filteredItems.length > 0" x-transition>
         <ul>
             <template x-for="item in filteredItems" :key="item.name">

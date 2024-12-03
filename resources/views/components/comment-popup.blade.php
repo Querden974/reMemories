@@ -1,7 +1,7 @@
 <div>
     <div class="flex flex-col border border-black border-dashed rounded-lg p-4 mt-3 gap-3">
         <h1 class="text-background font-bold text-xl">{{ $memory->title }}</h1>
-        <p class="text-start text-black">{{ $memory->content }}</p>
+        <p class="text-start text-black">{!! nl2br(e($memory->content)) !!}</p>
     </div>
 
     <form action="/comment/submit" method="post" id='writeComment' enctype="multipart/form-data" class="">
@@ -36,8 +36,8 @@
             </div>
 
         </div>
+        <div class="border-b-2 border-background my-6"></div>
     @endif
-    <div class="border-b-2 border-background my-6"></div>
     <div class="flex flex-col mt-4 gap-2" id="comments_area">
         @if (isset($memory->comments) && count(json_decode($memory->comments, true)) > 0)
 

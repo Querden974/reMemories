@@ -143,6 +143,7 @@ const dropzone = new Dropzone([]);
 
 const write_memory = document.getElementById('write_memory');
 write_memory.addEventListener('click', function() {
+    const page = `<x-write-memory-popup />`;
 
     Swal.fire({
         title: "Share us your memories",
@@ -154,10 +155,7 @@ write_memory.addEventListener('click', function() {
             title: "text-primary",
             popup: "bg-component rounded-xl border border-primary",
         },
-        html: `
-            <x-write-memory-popup />
-
-                  `,
+        html: page,
         focusConfirm: false,
         showCancelButton: true,
         showConfirmButton: true,

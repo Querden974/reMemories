@@ -13,16 +13,18 @@
                 <p class="text-primary"> {{ $memory->created_at->diffForHumans() }}</p>
 
                 {{-- TO DEBUG --}}
-                {{-- <x-context-menu-article :memory="$memory" />    --}}
+                <x-context-menu-article :memory="$memory" />
 
             </div>
 
         </div>
-        <div>
+        <div class="w-full px-3">
 
-            <div id="content">
-                <p class="px-2">{{ $memory->content }}</p>
+            <div id="content" class="flex flex-col justify-start w-full gap-2">
+                <p class="text-xl underline">{{ $memory->title }}</p>
+                <p class="">{!! nl2br(e($memory->content)) !!}</p>
             </div>
+
         </div>
         <div class="flex w-full justify-center items-center border-t border-background">
             <form action="" method="POST"
