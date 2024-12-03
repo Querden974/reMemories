@@ -12,14 +12,14 @@ class CommuActionController extends Controller
 {
     public function likePost(Request $request)
     {
-
+        if(!Auth::check()){
+            return redirect('/login')->with('error', 'You must been logged to like a memory!');
+        }
         $user = auth()->user();
         $memory = $request->post('id');
         $liked = $request->post('like');
 
         $currentMemory = PostMemories::where('id', $liked)->first();
-
-        //array_push($likedBy, 167);
 
         if($currentMemory->liked_by == null){
             $likedBy=[];
@@ -39,17 +39,41 @@ class CommuActionController extends Controller
         }
 
         $currentMemory->update(['liked_by' => $likedBy]);
+        return redirect()->back();
+    }
 
-        //dd($likedBy);
+    public function comment(string $id){
+        $memory = PostMemories::where('id', $id)->first();
+        return view('components.comment-popup', compact('memory'));
+    }
+
+    public function commentSubmit(Request $request){
+
+        if(!Auth::check()){
+            return redirect('/login')->with('error', 'You must been logged to comment a memory!');
+        }
+        $currentMemory = PostMemories::where('id', $request->memory_id)->first();
+
+        $data = $request->all();
+        $data['author'] = Auth::user()->id;
+
+        if(json_decode($currentMemory->comments, true) == null){
+            $comments=[];
+        } else {
+            $comments = json_decode($currentMemory->comments, true);
+        }
+
+        $comment = array(
+            'comment_id' => rand(time(),1),
+            'comment' => $data['comment'],
+            'author' => $data['author'],
+            'created_at' => date('Y-m-d H:i:s'),
+        );
+        array_push($comments, $comment);
 
 
-
-
-
-        //dd($likes);
-
-
-
+        $currentMemory->update(['comments' => json_encode($comments)]);
+        //dd($comments);
 
         return redirect()->back();
     }

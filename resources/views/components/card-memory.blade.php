@@ -11,7 +11,10 @@
 
             <div class="flex items-center gap-16">
                 <p class="text-primary"> {{ $memory->created_at->diffForHumans() }}</p>
-                {{-- <x-context-menu-article :memory="$memory" /> --}}
+
+                {{-- TO DEBUG --}}
+                {{-- <x-context-menu-article :memory="$memory" />    --}}
+
             </div>
 
         </div>
@@ -21,42 +24,46 @@
                 <p class="px-2">{{ $memory->content }}</p>
             </div>
         </div>
-        <form action="" method="POST"
-            class="flex flex-row gap-1 text-center justify-center items-center w-full   border-t border-background">
-            @method('PUT')
-            @csrf
+        <div class="flex w-full justify-center items-center border-t border-background">
+            <form action="" method="POST"
+                class="flex flex-row gap-1 text-center justify-center items-center w-1/2 m-0 ">
+                @method('PUT')
+                @csrf
 
-            <button name="like" id="like_{{ $memory->id }}" value="{{ $memory->id }}"
-                class="flex gap-2 w-1/2 justify-center rounded-bl-xl py-2 hover:text-red-500 hover:bg-slate-600 cursor-pointer transition-all duration-200 ease-in-out ">
-                @auth
-                    @if (in_array(Auth::user()->id, json_decode($memory->liked_by, true)))
-                        <span class="material-symbols-outlined text-red-500">
-                            heart_check
-                        </span>
-                    @else
-                        <span class="material-symbols-outlined">
-                            favorite
-                        </span>
+
+                {{-- LIKE BUTTON --}}
+                <button name="like" id="like_{{ $memory->id }}" value="{{ $memory->id }}"
+                    class="flex gap-2 w-full justify-center rounded-bl-xl py-2 hover:text-red-500 hover:bg-slate-600 cursor-pointer transition-all duration-200 ease-in-out ">
+
+                    {{-- CHECK IF USER LIKED --}}
+                    @auth
+                        @if (is_array(json_decode($memory->liked_by, true)) && in_array(Auth::user()->id, json_decode($memory->liked_by, true)))
+                            <span class="material-symbols-outlined text-red-500">
+                                heart_check
+                            </span>
+                        @else
+                            <span class="material-symbols-outlined">
+                                favorite
+                            </span>
+                        @endif
+                    @endauth
+
+                    <p class=" ">Like</p>
+                    @if (isset($memory->liked_by) && count(json_decode($memory->liked_by, true)) > 0)
+                        <p class="">{{ count(json_decode($memory->liked_by, true)) }}</p>
                     @endif
-                @endauth
-
-                <p class=" ">Like</p>
-                @if (isset($memory->liked_by) && count(json_decode($memory->liked_by, true)) > 0)
-                    <p class="">{{ count(json_decode($memory->liked_by, true)) }}</p>
+                </button>
+            </form>
+            {{-- COMMENTS BUTTON --}}
+            <button id="btn_comment_{{ $memory->id }}"
+                class="btn-comment flex gap-2 w-1/2 justify-center rounded-br-xl py-2 hover:text-blue-500 hover:bg-slate-600 cursor-pointer transition-all duration-200 ease-in-out"
+                data-id="{{ $memory->id }}">
+                <span class="material-symbols-outlined">mode_comment</span>
+                <p>Comments</p>
+                @if (isset($memory->comments) && count(json_decode($memory->comments, true)) > 0)
+                    <p class="">{{ count(json_decode($memory->comments, true)) }}</p>
                 @endif
             </button>
-            <button name="comment" id="comment_{{ $memory->id }}"
-                class="flex gap-2 w-1/2 justify-center rounded-br-xl py-2 hover:text-blue-500 hover:bg-slate-600 cursor-pointer transition-all duration-200 ease-in-out ">
-                <span class="material-symbols-outlined">
-                    mode_comment
-                </span>
-                <p class=" ">Comments</p>
-                @if (isset($memory->comments))
-                    <p class="text-red-500">{{ $memory->comments->count() }}</p>
-                @endif
-
-            </button>
-
-        </form>
+        </div>
     </div>
 </div>

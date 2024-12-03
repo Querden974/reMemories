@@ -20,6 +20,10 @@ use App\Http\Controllers\CommuActionController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::post('/upload', [HomeController::class, 'post']);
+Route::put('/', [CommuActionController::class, 'likePost']);
+
+Route::get('/memories/{id}/comments', [CommuActionController::class, 'comment'])->name('comment');
+Route::post('/comment/submit', [CommuActionController::class, 'commentSubmit']);
 
 Route::post('/search', [HomeController::class, 'search']);
 
