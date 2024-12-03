@@ -52,9 +52,9 @@
                                 <button id='write_profile'>Write a memory</button>
                             </div>
                             <div
-                                class="flex gap-2 w-1/2 justify-center rounded-br-xl py-2 hover:text-blue-500 hover:bg-slate-600 cursor-pointer transition-all duration-200 ease-in-out ">
+                                class="flex gap-2 w-1/2 justify-center rounded-br-xl py-2 hover:text-orange-500 hover:bg-slate-600 cursor-pointer transition-all duration-200 ease-in-out ">
                                 <span class="material-symbols-outlined">
-                                    mode_comment
+                                    edit
                                 </span>
 
                                 <button id="edit_profile">Edit profile</button>
@@ -287,9 +287,9 @@
                         popup: "bg-component rounded-xl border border-primary",
                     },
                     html: `
-                <x-write-memory-popup />
+        <x-write-memory-popup />
 
-                      `,
+              `,
                     focusConfirm: false,
                     showCancelButton: true,
                     showConfirmButton: true,
