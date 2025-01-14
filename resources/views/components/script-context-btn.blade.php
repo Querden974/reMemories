@@ -1,17 +1,44 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const contextBtn = document.querySelectorAll('.context-btn');
-        const contextMenu = document.querySelectorAll('.menu');
+        const contextBtns = document.querySelectorAll('.context-btn');
+        const contextMenus = document.querySelectorAll('.menu');
 
-        console.log(contextMenu);
-        contextBtn.forEach(btn => {
-            console.log(btn);
+        let openMenuId = null; // Variable pour stocker l'ID du menu actuellement ouvert
+
+        contextBtns.forEach(btn => {
             btn.addEventListener('click', function() {
+                const menuId = `ctxt_menu_${btn.value}`;
+                const menu = document.getElementById(menuId);
 
-                const menu = document.getElementById(`ctxt_menu_${btn.value}`);
-                menu.classList.toggle('hidden');
+                // Fermer tous les autres menus avant d'ouvrir le nouveau
+                contextMenus.forEach(otherMenu => {
+                    if (otherMenu.id !== menuId) {
+                        otherMenu.classList.add('hidden');
+                    }
+                });
+
+                // Basculer l'état du menu actuel
+                if (menu) {
+                    const isHidden = menu.classList.contains('hidden');
+                    if (isHidden) {
+                        menu.classList.remove('hidden');
+                        openMenuId = menuId; // Mémorise l'ID du menu ouvert
+                    } else {
+                        menu.classList.add('hidden');
+                        openMenuId = null; // Aucun menu ouvert
+                    }
+                }
+
             });
         });
 
+        // Optionnel : Fermer le menu si on clique en dehors
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.context-btn') && !event.target.closest('.menu')) {
+                contextMenus.forEach(menu => menu.classList.add('hidden'));
+                openMenuId = null; // Réinitialise la variable
+
+            }
+        });
     });
 </script>

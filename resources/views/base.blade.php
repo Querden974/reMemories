@@ -46,6 +46,17 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
         @endguest
 
     </header>
+    {{-- WIP MARKER --}}
+    <marquee behavior="scroll" direction="left" scrollamount="10" class="text-red-500 text-xl font-bold"> /!\ WORK IN
+        PROGRESS !
+        ----------
+        /!\ ----------WORK IN PROGRESS ! ---------- /!\
+    </marquee>
+    <marquee behavior="scroll" direction="right" scrollamount="10" class="text-red-500 text-xl font-bold"> /!\ WORK IN
+        PROGRESS !
+        ----------
+        /!\ ----------WORK IN PROGRESS ! ---------- /!\
+    </marquee>
 
     @foreach (['success', 'error', 'warning', 'info'] as $type)
         @if (session($type))

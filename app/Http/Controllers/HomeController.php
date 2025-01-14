@@ -34,4 +34,6 @@ class HomeController extends Controller
         //dd($search);
         return redirect()->route('profileShow', ['user'=>$search]);
     }
+
+
 }

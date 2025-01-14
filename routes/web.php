@@ -34,11 +34,15 @@ Route::get('/logout', [AuthController::class, 'doLogout']);
 Route::get('/register', [RegisterController::class, 'RegisterShow'])->name('register');
 Route::post('/register', [RegisterController::class, 'RegisterValitation']);
 
+Route::get('/test', [HomeController::class, 'PopulateMemories']);
+
 Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
 Route::post('/profile', [ProfileController::class, 'editProfile']);
 Route::get('/profile/{user}', [ProfileController::class, 'profileShow'])->name('profileShow');
 Route::post('/profile/{user}', [ProfileController::class, 'editProfile']);
 Route::put('/profile/{user}', [CommuActionController::class, 'likePost']);
+
+
 
 Route::get('/db', function () {
     return view('dbtest');
