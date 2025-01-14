@@ -24,7 +24,7 @@
                     class="hidden absolute end-1  mt-2 rounded-xl border border-primary  bg-component shadow-lg  z-50"
                     role="menu">
                     <div class="p-2">
-                        <a href="/profile/{{ auth()->user()->name }}"
+                        <a href="{{ route('profileShow', ['user' => auth()->user()->name]) }}"
                             class="font-semibold block rounded-lg px-4 py-2 text-sm text-background hover:bg-primary hover:text-background"
                             role="menuitem">
                             Profile

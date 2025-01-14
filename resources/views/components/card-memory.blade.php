@@ -1,11 +1,14 @@
 <div class="w-full flex items-center justify-center">
     <div class="w-1/3 flex flex-col items-center justify-center bg-component rounded-xl gap-3 ">
         <div id="card_header" class="flex items-center w-full justify-between p-2 border-b border-background">
-            <div class="flex items-center gap-1">
-                <img class="w-9 aspect-square rounded-full  border-primary " draggable="false"
-                    src="{{ isset($info->where('user_id', $memory->user_id)->first()->profile_img)? $info->where('user_id', $memory->user_id)->first()->imageUrl(): Storage::disk('public')->url('profile_img/default_avatar.webp') }}">
-                <p class="font-semibold">{{ $users->where('id', $memory->user_id)->first()->name }}</p>
-            </div>
+            <a href="{{ route('profileShow', ['user' => $users->where('id', $memory->user_id)->first()->name]) }}">
+                <div class="flex items-center gap-1">
+                    <img class="w-9 aspect-square rounded-full  border-primary " draggable="false"
+                        src="{{ isset($info->where('user_id', $memory->user_id)->first()->profile_img)? $info->where('user_id', $memory->user_id)->first()->imageUrl(): Storage::disk('public')->url('profile_img/default_avatar.webp') }}">
+                    <p class="font-semibold">{{ $users->where('id', $memory->user_id)->first()->name }}</p>
+                </div>
+            </a>
+
 
 
 

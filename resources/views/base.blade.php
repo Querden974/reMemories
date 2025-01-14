@@ -25,7 +25,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 
 <body class="bg-background min-h-screen">
     <header class="flex flex-row justify-between items-baseline py-4 px-40 text-white">
-        <a href="/">
+        <a href="{{ route('home') }}">
             <h1 class="font-madimi text-primary text-3xl">re:Memories</h1>
         </a>
 
@@ -40,8 +40,9 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 
         @guest
             <div>
-                <a class="text-slate-200 border-primary border-2 rounded-full px-4 py-2" href="/login">Sign In</a>
-                <a class='text-background bg-primary rounded-full px-4 py-2' href="/register">Sign Up</a>
+                <a class="text-slate-200 border-primary border-2 rounded-full px-4 py-2" href="{{ route('login') }}">Sign
+                    In</a>
+                <a class='text-background bg-primary rounded-full px-4 py-2' href="{{ route('register') }}">Sign Up</a>
             </div>
         @endguest
 
