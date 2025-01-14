@@ -11,17 +11,17 @@
                         @if ($item == 'Share')
                             @if ($memory->restrictions != 'private')
                                 <a href=""
-                                    class="font-semibold block rounded-lg px-4 py-2 text-sm text-background hover:bg-primary hover:text-background"
+                                    class="font-semibold block rounded-lg px-4 py-2 text-sm w-full text-left text-background hover:bg-primary hover:text-background"
                                     role="menuitem">
                                     {{ $item }}
                                 </a>
                             @endif
                         @else
-                            <a href=""
-                                class="font-semibold block rounded-lg px-4 py-2 text-sm text-background hover:bg-primary hover:text-background"
+                            <button href=""
+                                class="font-semibold block rounded-lg px-4 py-2 text-sm w-full text-left text-background hover:bg-primary hover:text-background"
                                 role="menuitem">
                                 {{ $item }}
-                            </a>
+                            </button>
                         @endif
                     @endforeach
                 </div>

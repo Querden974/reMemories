@@ -33,13 +33,15 @@
                 class=" rounded-lg border border-gray-200 p-4  text-sm shadow-sm w-full"></textarea>\
         </div>
     </div>
-    <div class='flex flex-col'>
+
+    {{-- WORK IN PROGRESS --}}
+    {{-- <div class='flex flex-col'>
         <div class="flex flex-col items-baseline mt-4 w-full">
             <label for="images[]" class="block font-medium text-background w-max">Import Images</label>
             <input type="file" name="images[]" id="images" multiple onchange="dropzone.showImages()"
                 accept="image/jpg, image/jpeg, image/png, image/gif">
         </div>
-    </div>
+    </div> --}}
 
 
     {{-- <div class='flex flex-col'>
