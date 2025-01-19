@@ -24,16 +24,31 @@ class HomeController extends Controller
             return redirect()->intended(route('login'));
         }
         $data = $request->all();
+
+
         $data['user_id'] = Auth::user()->id;
+        $images = $data['images'];
+        foreach($images as $key => $image){
+            $images[$key] = $image->store('images','public');
+        }
+        $data['images'] = json_encode($images);
+
+
+        //dd($data);
         PostMemories::create($data);
         return redirect()->intended(route('home'));
     }
 
     public function search(Request $request){
         $search = $request->search_bar;
-        //dd($search);
         return redirect()->route('profileShow', ['user'=>$search]);
     }
 
-
+    public function removePost(Request $request){
+        session()->put('url.intended', url()->previous());
+        $id = $request->id;
+        $post = PostMemories::find($id);
+        $post->delete();
+        return redirect()->intended();
+    }
 }

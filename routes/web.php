@@ -21,6 +21,8 @@ use App\Http\Controllers\CommuActionController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::post('/upload', [HomeController::class, 'post']);
 Route::put('/', [CommuActionController::class, 'likePost']);
+Route::get('/post/{id}/remove', [HomeController::class, 'removePost'])->name('removePost');
+
 
 Route::get('/memories/{id}/comments', [CommuActionController::class, 'comment'])->name('comment');
 Route::post('/comment/submit', [CommuActionController::class, 'commentSubmit']);

@@ -26,6 +26,20 @@
             <div id="content" class="flex flex-col justify-start w-full gap-2">
                 <p class="text-xl underline">{{ $memory->title }}</p>
                 <p class="">{!! nl2br(e($memory->content)) !!}</p>
+
+                <div class="flex flex-row gap-4 justify-center items-center">
+                    @if ($memory->images != null && is_array(json_decode($memory->images, true)))
+                        @foreach (json_decode($memory->images, true) as $image)
+                            <button onclick="openPicture('{{ Storage::disk('public')->url($image) }}')">
+                                <img class="max-w-32 aspect-square rounded-xl cursor-pointer " draggable="false"
+                                    src="{{ Storage::disk('public')->url($image) }}" />
+                            </button>
+                        @endforeach
+
+                    @endif
+                </div>
+
+
             </div>
 
         </div>
@@ -72,3 +86,15 @@
         </div>
     </div>
 </div>
+
+<script>
+    function openPicture(url) {
+        console.log(url);
+        Swal.fire({
+            imageUrl: url,
+            showConfirmButton: false,
+            background: "rgba(0, 0, 0, 0.0)",
+            imageAlt: "Custom image"
+        });
+    }
+</script>

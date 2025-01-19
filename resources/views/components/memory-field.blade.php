@@ -106,7 +106,7 @@
                     // Ajoutez le fichier valide à la liste globale
                     const filePath = URL.createObjectURL(files[i]);
                     this.allValidFiles.push(files[i]);
-                    console.log(this.allValidFiles); // Affiche tous les fichiers valides ajoutés
+                    //console.log(this.allValidFiles); // Affiche tous les fichiers valides ajoutés
                 } else {
                     error.innerHTML = "Invalid file format";
                 }
@@ -128,39 +128,33 @@
         }
 
         upload() {
-
-            const dropzone = document.getElementById('image-upload');
-
-            // Créer un objet FormData pour envoyer les fichiers
             const formData = new FormData();
 
-            // Ajouter chaque fichier de allValidFiles à FormData
+            // Ajouter chaque fichier sélectionné (réel) à FormData
             this.allValidFiles.forEach(file => {
-                formData.append('image[]',
-                    file); // 'image[]' est la clé que Laravel utilisera pour récupérer les fichiers
+                formData.append('images[]', file); // Laravel attend 'images[]'
             });
 
-            // Ajouter le token CSRF à la requête
+            // Ajouter le token CSRF
             formData.append('_token', document.querySelector('input[name="_token"]').value);
 
-            // Envoyer la requête avec fetch
+            console.log('Données envoyées:', formData);
+
+            // Envoyer la requête avec fetch (NE PAS AJOUTER Content-Type MANUELLEMENT)
             fetch('/upload', {
                     method: 'POST',
-                    body: formData,
+                    body: formData, // fetch() gère 'multipart/form-data' automatiquement
+
                 })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
+                .then(response => response.json())
                 .then(data => {
-                    console.log('Fichiers envoyés avec succès', data);
+                    console.log('Fichiers envoyés avec succès:', data);
                 })
                 .catch(error => {
                     console.error('Erreur lors de l\'envoi des fichiers:', error);
                 });
         }
+
 
         showImages() {
             const images = Array.from(event.target.files);
@@ -182,6 +176,27 @@
             // });
         }
     }
+
+    function sendForm(form) {
+        const formData = new FormData(form);
+        const csrfToken = document.querySelector('input[name="_token"]').value;
+
+        fetch(form.action, {
+                method: form.method,
+                body: formData,
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken
+                }
+            })
+            .then(response => response.json()) // Lire la réponse en texte
+            .then(data => {
+                console.log('Formulaire envoyé avec succès:', data);
+            })
+            .catch(error => {
+                console.error('Erreur lors de l\'envoi du formulaire:', error);
+            });
+    }
+
 
 
 
@@ -217,6 +232,9 @@
             //dropzone.addImageInput();
             //dropzone.upload();
             if (result.isConfirmed) {
+                //console.log(document.getElementById('writeMemoryForm'));
+                //sendForm(document.getElementById('writeMemoryForm'));
+                //dropzone.upload();
                 document.getElementById('writeMemoryForm').submit();
             }
         });

@@ -34,16 +34,16 @@
         </div>
     </div>
 
-    {{-- WORK IN PROGRESS --}}
-    {{-- <div class='flex flex-col'>
+
+    <div class='flex flex-col'>
         <div class="flex flex-col items-baseline mt-4 w-full">
             <label for="images[]" class="block font-medium text-background w-max">Import Images</label>
             <input type="file" name="images[]" id="images" multiple onchange="dropzone.showImages()"
                 accept="image/jpg, image/jpeg, image/png, image/gif">
         </div>
-    </div> --}}
+    </div>
 
-
+    {{-- WORK IN PROGRESS --}}
     {{-- <div class='flex flex-col'>
         <div id="image-upload" dropzone="copy"
             class="flex flex-col items-center justify-center mt-4 h-32 w-full rounded-lg border-2 border-dashed border-gray-300 cursor-pointer"
@@ -56,8 +56,8 @@
             </div>
 
 
-        </div> --}}
-    </div>
+        </div>
+    </div> --}}
     <div class="flex flex-row mt-4 gap-2" id="image-preview">
 
     </div>

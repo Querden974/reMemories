@@ -306,5 +306,6 @@
             });
         </script>
         <x-script-comment-btn />
+        <x-script-context-btn />
     @endauth
 @endsection
