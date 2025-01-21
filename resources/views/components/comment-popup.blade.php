@@ -2,6 +2,17 @@
     <div class="flex flex-col border border-black border-dashed rounded-lg p-4 mt-3 gap-3">
         <h1 class="text-background font-bold text-xl">{{ $memory->title }}</h1>
         <p class="text-start text-black">{!! nl2br(e($memory->content)) !!}</p>
+        <div class="flex flex-row gap-4 justify-center items-center">
+            @if ($memory->images != null && is_array(json_decode($memory->images, true)))
+                @foreach (json_decode($memory->images, true) as $image)
+                    <button onclick="openPicture('{{ Storage::disk('public')->url($image) }}')">
+                        <img class="max-w-32 aspect-square rounded-xl cursor-pointer " draggable="false"
+                            src="{{ Storage::disk('public')->url($image) }}" />
+                    </button>
+                @endforeach
+
+            @endif
+        </div>
     </div>
 
     <form action="/comment/submit" method="post" id='writeComment' enctype="multipart/form-data" class="">

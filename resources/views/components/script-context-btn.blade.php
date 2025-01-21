@@ -32,7 +32,7 @@
             });
         });
 
-        // Optionnel : Fermer le menu si on clique en dehors
+
         document.addEventListener('click', function(event) {
             if (!event.target.closest('.context-btn') && !event.target.closest('.menu')) {
                 contextMenus.forEach(menu => menu.classList.add('hidden'));

@@ -15,7 +15,7 @@
             <div class="flex items-center gap-16">
                 <p class="text-primary"> {{ $memory->created_at->diffForHumans() }}</p>
 
-                {{-- TO DEBUG --}}
+
                 <x-context-menu-article :memory="$memory" />
 
             </div>
@@ -89,7 +89,6 @@
 
 <script>
     function openPicture(url) {
-        console.log(url);
         Swal.fire({
             imageUrl: url,
             showConfirmButton: false,

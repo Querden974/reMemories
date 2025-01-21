@@ -17,7 +17,11 @@
                     <div class="flex gap-3">
 
                         <p class="text-primary font-bold text-6xl"> {{ $profile->name }}</p>
-                        <p class="text-primary  text-6xl select-none">(27)</p>
+                        @if (isset($profile->userInfo->birthdate))
+                            <p class="text-primary text-6xl select-none">
+                                ({{ \Carbon\Carbon::parse($profile->userInfo->birthdate)->age }} ans)
+                            </p>
+                        @endif
                     </div>
                     @if (isset($profile->userInfo->firstname))
                         <div>

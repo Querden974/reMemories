@@ -17,13 +17,15 @@
                                 </a>
                             @endif
                         @elseif ($item == 'Delete')
-                            @if (Auth::user()->id == $memory->user_id)
-                                <a href="{{ route('removePost', ['id' => $memory->id]) }}"
-                                    class="font-semibold block rounded-lg px-4 py-2 text-sm w-full text-left text-background hover:bg-red-500 hover:text-slate-50"
-                                    role="menuitem">
-                                    {{ $item }}
-                                </a>
-                            @endif
+                            @auth
+                                @if (Auth::user()->id == $memory->user_id)
+                                    <a href="{{ route('removePost', ['id' => $memory->id]) }}"
+                                        class="font-semibold block rounded-lg px-4 py-2 text-sm w-full text-left text-background hover:bg-red-500 hover:text-slate-50"
+                                        role="menuitem">
+                                        {{ $item }}
+                                    </a>
+                                @endif
+                            @endauth
                         @else
                             <button href=""
                                 class="font-semibold block rounded-lg px-4 py-2 text-sm w-full text-left text-background hover:bg-primary hover:text-background"

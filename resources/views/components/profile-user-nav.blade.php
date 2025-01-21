@@ -55,6 +55,14 @@
 
 
             });
+
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('#btn_profile') && !event.target.closest('#menu')) {
+                    menu.classList.add('hidden');
+
+                }
+
+            });
         </script>
     </div>
 @endauth
