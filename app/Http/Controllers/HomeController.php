@@ -15,8 +15,9 @@ class HomeController extends Controller
 {
     public function index(){
 
-        //dd($memories);
-        return view('index');
+        $memories = PostMemories::orderBy('created_at', 'desc')->paginate(10);
+        return view('index', compact('memories'));
+        //return view('index');
     }
 
     public function post(MemoryPostRequest $request){

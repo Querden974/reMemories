@@ -16,23 +16,27 @@
             </div>
         @endguest
 
-        @foreach ($memories->sortByDesc('created_at') as $memory)
-            {{-- @dd($memory->getAttributes()) --}}
-
-            @if ($memory->restrictions == 'private')
-                @auth
+        <div class="w-full flex flex-col items-center justify-center gap-3 mt-10">
+            @foreach ($memories as $memory)
+                @if ($memory->restrictions == 'private')
+                    @auth
+                        @if (Auth::user()->id == $memory->user_id)
+                            <x-card-memory :memory="$memory" :users="$users" :info="$info" />
+                        @endif
+                    @endauth
+                @elseif ($memory->restrictions == 'restricted')
                     @if (Auth::user()->id == $memory->user_id)
                         <x-card-memory :memory="$memory" :users="$users" :info="$info" />
                     @endif
-                @endauth
-            @elseif ($memory->restrictions == 'restricted')
-                @if (Auth::user()->id == $memory->user_id)
+                @else
                     <x-card-memory :memory="$memory" :users="$users" :info="$info" />
                 @endif
-            @else
-                <x-card-memory :memory="$memory" :users="$users" :info="$info" />
-            @endif
-        @endforeach
+            @endforeach
+
+            {{ $memories->links('vendor.pagination.tailwind') }}
+        </div>
+
+
 
     </main>
 

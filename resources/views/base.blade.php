@@ -48,12 +48,14 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 
     </header>
     {{-- WIP MARKER --}}
-    <marquee behavior="scroll" direction="left" scrollamount="10" class="text-red-500 text-xl font-bold"> /!\ WORK IN
+    <marquee behavior="scroll" direction="left" scrollamount="10" class="text-red-500 text-xl font-bold select-none">
+        /!\ ---------- WORK IN
         PROGRESS !
         ----------
         /!\ ----------WORK IN PROGRESS ! ---------- /!\
     </marquee>
-    <marquee behavior="scroll" direction="right" scrollamount="10" class="text-red-500 text-xl font-bold"> /!\ WORK IN
+    <marquee behavior="scroll" direction="right" scrollamount="10" class="text-red-500 text-xl font-bold select-none">
+        /!\ ---------- WORK IN
         PROGRESS !
         ----------
         /!\ ----------WORK IN PROGRESS ! ---------- /!\
@@ -102,20 +104,6 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
                     can
                     share your memories with your friends and family.
                 </p>
-
-                <ul class="mt-12 flex flex-wrap justify-center gap-6 md:gap-8 lg:gap-12">
-                    <li>
-                        <a class="text-slate-200 transition hover:text-primary/75" href="#"> About </a>
-                    </li>
-
-                    <li>
-                        <a class="text-slate-200 transition hover:text-primary/75" href="#"> Careers </a>
-                    </li>
-
-                    <li>
-                        <a class="text-slate-200 transition hover:text-primary/75" href="#"> FAQ </a>
-                    </li>
-                </ul>
 
                 <ul class="mt-12 flex justify-center gap-6 md:gap-8">
 
