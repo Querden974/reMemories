@@ -19,13 +19,13 @@ use App\Http\Controllers\CommuActionController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::post('/upload', [HomeController::class, 'post']);
-Route::put('/', [CommuActionController::class, 'likePost']);
+Route::post('/upload', [HomeController::class, 'post'])->name('writeMemory');
+Route::put('/', [CommuActionController::class, 'likePost'])->name('likePost');
 Route::get('/post/{id}/remove', [HomeController::class, 'removePost'])->name('removePost');
 
 
 Route::get('/memories/{id}/comments', [CommuActionController::class, 'comment'])->name('comment');
-Route::post('/comment/submit', [CommuActionController::class, 'commentSubmit']);
+Route::post('/comment/submit', [CommuActionController::class, 'commentSubmit'])->name('commentSubmit');
 
 Route::post('/search', [HomeController::class, 'search']);
 

@@ -28,11 +28,14 @@ class HomeController extends Controller
 
 
         $data['user_id'] = Auth::user()->id;
-        $images = $data['images'];
+        if(isset($data['images'])){
+           $images = $data['images'];
         foreach($images as $key => $image){
             $images[$key] = $image->store('images','public');
         }
         $data['images'] = json_encode($images);
+        }
+
 
 
         //dd($data);

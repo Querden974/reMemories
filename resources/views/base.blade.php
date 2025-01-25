@@ -19,7 +19,8 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
 
 
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    @vite('resources/css/app.css')
+
+    @vite(['resources/css/app.css'])
     <title>re:Memories | @yield('title', 'Home')</title>
 </head>
 
@@ -86,6 +87,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
     <div class="mt-8">
 
         @yield('content')
+
     </div>
 
     <footer>
@@ -137,6 +139,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
             </div>
         </footer>
     </footer>
+
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-<form action="/upload" method="post" id='writeMemoryForm' enctype="multipart/form-data">
+<form action="{{ route('writeMemory') }}" method="post" id='writeMemoryForm' enctype="multipart/form-data">
     @csrf
     <fieldset class="flex flex-row justify-center items-baseline mt-4 w-full gap-3 ">
         <legend class="text-background underline">Select restrictions:</legend>

@@ -3,8 +3,10 @@
         <div id="card_header" class="flex items-center w-full justify-between p-2 border-b border-background">
             <a href="{{ route('profileShow', ['user' => $users->where('id', $memory->user_id)->first()->name]) }}">
                 <div class="flex items-center gap-1">
-                    <img class="w-9 aspect-square rounded-full  border-primary " draggable="false"
-                        src="{{ isset($info->where('user_id', $memory->user_id)->first()->profile_img)? $info->where('user_id', $memory->user_id)->first()->imageUrl(): Storage::disk('public')->url('profile_img/default_avatar.webp') }}">
+                    <img class="w-9 aspect-square rounded-full border-primary" draggable="false"
+                        src="{{ isset($info->where('user_id', $memory->user_id)->first()->profile_img)
+                            ? Storage::disk('public')->url('/app/public/' . $info->where('user_id', $memory->user_id)->first()->profile_img)
+                            : Storage::disk('public')->url('/app/public/profile_img/default_avatar.webp') }}">
                     <p class="font-semibold">{{ $users->where('id', $memory->user_id)->first()->name }}</p>
                 </div>
             </a>
@@ -30,9 +32,10 @@
                 <div class="flex flex-row gap-4 justify-center items-center">
                     @if ($memory->images != null && is_array(json_decode($memory->images, true)))
                         @foreach (json_decode($memory->images, true) as $image)
-                            <button onclick="openPicture('{{ Storage::disk('public')->url($image) }}')">
+                            <button
+                                onclick="openPicture('{{ Storage::disk('public')->url('/app/public/' . $image) }}')">
                                 <img class="max-w-32 aspect-square rounded-xl cursor-pointer " draggable="false"
-                                    src="{{ Storage::disk('public')->url($image) }}" />
+                                    src="{{ Storage::disk('public')->url('/app/public/' . $image) }}" />
                             </button>
                         @endforeach
 
