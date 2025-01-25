@@ -35,7 +35,7 @@
     // Liste des utilisateurs récupérée côté serveur
     const userList = @json($users);
     const userInfo = @json($info);
-    const baseAvatarUrl = `{{ Storage::disk('public')->url('') }}`;
+    const baseAvatarUrl = `{{ Storage::disk('public')->url('/app/public/') }}`;
 
     // Créer la liste des utilisateurs avec l'URL de leur avatar
     const list = [];
