@@ -30,7 +30,7 @@ class UserInfoPublic extends Model
         if(isset($this->profile_img)){
             return Storage::disk('public')->url('/app/public/'.$this->profile_img);
         }else{
-            return Storage::disk('public')->url('profile_img/default_avatar.webp');
+            return Storage::disk('public')->url('/app/public/profile_img/default_avatar.webp');
         }
 
     }

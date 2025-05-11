@@ -2,13 +2,16 @@
     // Sélectionner tous les boutons de commentaire
     const commentButtons = document.querySelectorAll('.btn-comment');
 
+
     commentButtons.forEach(button => {
         button.addEventListener('click', () => {
             const memoryId = button.getAttribute('data-id'); // Récupère l'ID du bouton
+            const routeTemplate = "{{ route('comment', ['id' => '__ID__']) }}";
+            const route = routeTemplate.replace("__ID__", memoryId);
             console.log(`ID de $memory : ${memoryId}`);
 
             // Utilise fetch pour charger dynamiquement le contenu via une route
-            fetch(`/memories/${memoryId}/comments`)
+            fetch(route)
                 .then(response => response.text()) // Récupère le contenu HTML
                 .then(html => {
                     // Affiche le contenu dans le popup SweetAlert2

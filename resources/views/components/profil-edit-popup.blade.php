@@ -1,4 +1,4 @@
-<form action="/profile/{{ auth()->user()->name }}" method="post" id='editProfileForm' enctype="multipart/form-data">
+<form action="{{ route('profileShow', ['user' => auth()->user()->name]) }}" method="post" id='editProfileForm' enctype="multipart/form-data">
     @csrf
     <div class="flex flex-col items-baseline mr-2 w-fit">
         <label for="firstname" class="block font-medium text-background w-max">Pseudo</label>

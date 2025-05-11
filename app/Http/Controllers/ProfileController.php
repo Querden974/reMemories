@@ -38,7 +38,7 @@ class ProfileController extends Controller
 
     public function editProfile(UserInfoPublic $info, EditProfileRequest $request){
         $data = $request->validated();
-        dd($data);
+        // dd($data);
 
 
         if(!Auth::check()){
@@ -51,12 +51,12 @@ class ProfileController extends Controller
         if($existing && $user){
 
             $user->update($this->updateData($user, $request));
-            return redirect('profile/'.Auth::user()->name)->with('success', 'Account updated successfully');
+            return redirect()->route('profileShow', ['user' => auth()->user()->name])->with('success', 'Account updated successfully');
         } else {
 
            $info = UserInfoPublic::create($this->updateData(new UserInfoPublic, $request));
 
-        return redirect('profile/'.Auth::user()->name)->with('success', 'Account added successfully');
+        return redirect()->route('profileShow', ['user' => auth()->user()->name])->with('success', 'Account added successfully');
         }
     }
 

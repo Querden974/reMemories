@@ -9,7 +9,7 @@
                     src="{{ $profile->userInfo->imageUrl() }}" draggable="false" />
             @else
                 <img id="profile-img" class="select-none w-64 aspect-square rounded-full z-10 bg-component p-2"
-                    src="{{ Storage::disk('public')->url('profile_img/default_avatar.webp') }}" draggable="false" />
+                    src="{{ Storage::disk('public')->url('/app/public/profile_img/default_avatar.webp') }}" draggable="false" />
             @endif
             <div class="relative -translate-x-10 flex flex-col gap-5 bg-component  rounded-r-xl   ">
                 <div class="flex flex-col gap-2 py-3 px-16">
@@ -108,7 +108,8 @@
 
 
             const editProfile = document.getElementById('edit_profile');
-            editProfile.addEventListener('click', function() {
+            editProfile.addEventListener('click', function(e) {
+                e.preventDefault()
 
                 Swal.fire({
                     title: "Edit Profile",

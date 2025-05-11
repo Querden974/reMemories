@@ -5,9 +5,9 @@
         <div class="flex flex-row gap-4 justify-center items-center">
             @if ($memory->images != null && is_array(json_decode($memory->images, true)))
                 @foreach (json_decode($memory->images, true) as $image)
-                    <button onclick="openPicture('{{ Storage::disk('public')->url($image) }}')">
+                    <button onclick="openPicture('{{ Storage::disk('public')->url('/app/public/' . $image) }}')">
                         <img class="max-w-32 aspect-square rounded-xl cursor-pointer " draggable="false"
-                            src="{{ Storage::disk('public')->url($image) }}" />
+                            src="{{ Storage::disk('public')->url('/app/public/' . $image) }}" />
                     </button>
                 @endforeach
 
@@ -15,7 +15,7 @@
         </div>
     </div>
 
-    <form action="/comment/submit" method="post" id='writeComment' enctype="multipart/form-data" class="">
+    <form action="{{ route('commentSubmit') }}" method="post" id='writeComment' enctype="multipart/form-data" class="">
         @csrf
         <input type="hidden" name="memory_id" value="{{ $memory->id }}">
         <div class='flex flex-col mt-3 '>
